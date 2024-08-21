@@ -33,13 +33,17 @@ LINKER_SCRIPT_DEP:=
 
 # Every subdirectory with source files must be described here
 SUBDIRS :=  \
-../DS18B20
+../DS18B20 \
+../I2C \
+../UART
 
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
 ../DS18B20/DS18B20.c \
-../main.c
+../I2C/TWI_I2C.c \
+../main.c \
+../UART/UART.c
 
 
 PREPROCESSING_SRCS += 
@@ -50,19 +54,27 @@ ASM_SRCS +=
 
 OBJS +=  \
 DS18B20/DS18B20.o \
-main.o
+I2C/TWI_I2C.o \
+main.o \
+UART/UART.o
 
 OBJS_AS_ARGS +=  \
 DS18B20/DS18B20.o \
-main.o
+I2C/TWI_I2C.o \
+main.o \
+UART/UART.o
 
 C_DEPS +=  \
 DS18B20/DS18B20.d \
-main.d
+I2C/TWI_I2C.d \
+main.d \
+UART/UART.d
 
 C_DEPS_AS_ARGS +=  \
 DS18B20/DS18B20.d \
-main.d
+I2C/TWI_I2C.d \
+main.d \
+UART/UART.d
 
 OUTPUT_FILE_PATH +=Esclavo_temp.elf
 
@@ -85,7 +97,21 @@ DS18B20/DS18B20.o: ../DS18B20/DS18B20.c
 	@echo Finished building: $<
 	
 
+I2C/TWI_I2C.o: ../I2C/TWI_I2C.c
+	@echo Building file: $<
+	@echo Invoking: XC8 C Compiler : 2.36
+	$(QUOTE)C:\Program Files\Microchip\xc8\v2.36\bin\xc8-cc.exe$(QUOTE)  -mcpu=ATmega328P  -mdfp="C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\xc8"  -c -x c -funsigned-char -funsigned-bitfields -mext=cci -D__ATmega328P__ -DDEBUG  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
 ./main.o: .././main.c
+	@echo Building file: $<
+	@echo Invoking: XC8 C Compiler : 2.36
+	$(QUOTE)C:\Program Files\Microchip\xc8\v2.36\bin\xc8-cc.exe$(QUOTE)  -mcpu=ATmega328P  -mdfp="C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\xc8"  -c -x c -funsigned-char -funsigned-bitfields -mext=cci -D__ATmega328P__ -DDEBUG  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+UART/UART.o: ../UART/UART.c
 	@echo Building file: $<
 	@echo Invoking: XC8 C Compiler : 2.36
 	$(QUOTE)C:\Program Files\Microchip\xc8\v2.36\bin\xc8-cc.exe$(QUOTE)  -mcpu=ATmega328P  -mdfp="C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\xc8"  -c -x c -funsigned-char -funsigned-bitfields -mext=cci -D__ATmega328P__ -DDEBUG  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

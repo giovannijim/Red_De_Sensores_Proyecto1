@@ -19,7 +19,8 @@ uint8_t BufferRx;
 int main(void)
 {
     cli();
-	DDRB |= (1<<DDB5);
+	DDRB |= (1<<DDB3);
+	DDRB |= (1<<DDB3);
 	PORTB = 0;
 	initUART9600();
 	sei();
@@ -35,12 +36,12 @@ int main(void)
 ISR(USART_RX_vect)
 {
 	BufferRx = UDR0;
-	if (UDR0 == 'a')
+	if (UDR0 == '1')
 	{
-		PORTB |= 1<<PORTB5;
+		PORTB |= 1<<PORTB3;
 	}
 	else{
-		PORTB &= ~1<<PORTB5;
+		PINB |= 1<<PINB4;
 	}
 
 }
