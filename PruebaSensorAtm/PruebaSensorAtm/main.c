@@ -89,9 +89,9 @@ int main(void) {
 	bme280_read_calibration();
 
 	while (1) {
+		writeUART('1');
 		uint32_t pressure = bme280_read_pressure();
 		uart_send_pressure(pressure); // Enviar presión a través de UART
-		
 		_delay_ms(1000); // Esperar 1 segundo antes de la siguiente lectura
 	}
 }
