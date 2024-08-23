@@ -14,10 +14,13 @@
 #include "ADC/initADC.h"
 #include "UART/UART.h"
 #include "I2C/TWI_I2C.h"
+#include "DRV8825/DRV8825.h"
 
 void float_to_char_s2(char value_adch);
 
 #define SlaveHumedad 0x30
+#define STEPS_PER_REVOLUTION 200
+#define limite_inf 100
 
 uint8_t buffer = 0;
 char buffer_s2[5] = {'0'};
@@ -25,13 +28,19 @@ uint8_t	 moisture_level;
 uint8_t bufferRX;
 float voltage;
 
+void agua(){
+	rotate_motor(1, 1*STEPS_PER_REVOLUTION);
+}
+
 int main(void)
 {
 	cli();
     moisture_level = 0;
+	buffer =0;
 	initUART9600();
 	I2C_SETTING_SLAVE(SlaveHumedad);
 	sei();
+	setup_pins();
     while (1) 
     {
 		initADC(0);							// Inicializar ADC [0]
@@ -39,6 +48,19 @@ int main(void)
 		while(ADCSRA&(1<<ADSC));			// Revisar si la conversion ya termino
 		moisture_level = ~ADCH;
 		float_to_char_s2(moisture_level);
+		
+		if (moisture_level<30){
+			agua();
+		}
+		
+		if (buffer == 3)
+		{
+			agua();
+			buffer=0;
+		}
+		else {}
+			
+		
 		_delay_ms(20);
     }
 }

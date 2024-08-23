@@ -105,6 +105,8 @@ ISR(USART_RX_vect)
 		I2C_SLAVE(1,sensorTemperatura);}
 	if (UDR0 == '2'){
 		I2C_SLAVE(2,sensorTemperatura);}
+	if (UDR0 == '3'){
+		I2C_SLAVE(3,sensorHumedad);}
 }
 
 
