@@ -126,6 +126,12 @@
     <Compile Include="ADC\initADC.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="DRV8825\DRV8825.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="DRV8825\DRV8825.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="I2C\TWI_I2C.c">
       <SubType>compile</SubType>
     </Compile>
@@ -145,6 +151,7 @@
   <ItemGroup>
     <Folder Include="ADC" />
     <Folder Include="I2C" />
+    <Folder Include="DRV8825" />
     <Folder Include="UART" />
   </ItemGroup>
   <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />
