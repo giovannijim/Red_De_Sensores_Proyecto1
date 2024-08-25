@@ -36,6 +36,7 @@ SUBDIRS :=  \
 ../ADC \
 ../I2C \
 ../DRV8825 \
+../PWM0 \
 ../UART
 
 
@@ -45,6 +46,7 @@ C_SRCS +=  \
 ../DRV8825/DRV8825.c \
 ../I2C/TWI_I2C.c \
 ../main.c \
+../PWM0/PMW0.c \
 ../UART/UART.c
 
 
@@ -59,6 +61,7 @@ ADC/initADC.o \
 DRV8825/DRV8825.o \
 I2C/TWI_I2C.o \
 main.o \
+PWM0/PMW0.o \
 UART/UART.o
 
 OBJS_AS_ARGS +=  \
@@ -66,6 +69,7 @@ ADC/initADC.o \
 DRV8825/DRV8825.o \
 I2C/TWI_I2C.o \
 main.o \
+PWM0/PMW0.o \
 UART/UART.o
 
 C_DEPS +=  \
@@ -73,6 +77,7 @@ ADC/initADC.d \
 DRV8825/DRV8825.d \
 I2C/TWI_I2C.d \
 main.d \
+PWM0/PMW0.d \
 UART/UART.d
 
 C_DEPS_AS_ARGS +=  \
@@ -80,6 +85,7 @@ ADC/initADC.d \
 DRV8825/DRV8825.d \
 I2C/TWI_I2C.d \
 main.d \
+PWM0/PMW0.d \
 UART/UART.d
 
 OUTPUT_FILE_PATH +=SensorHumedad.elf
@@ -118,6 +124,13 @@ I2C/TWI_I2C.o: ../I2C/TWI_I2C.c
 	
 
 ./main.o: .././main.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega328p" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+PWM0/PMW0.o: ../PWM0/PMW0.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega328p" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

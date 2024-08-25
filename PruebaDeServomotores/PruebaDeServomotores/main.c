@@ -74,10 +74,12 @@ int main(void) {
 		{
 			PORTB |= 1<< PORTB4;
 			abrir_compuertas();
+			bufferI2C = 0;
 		}
 		else if (bufferI2C == 2) {
 			PORTB &= ~1<< PORTB4;
 			cerrar_compuertas();
+			bufferI2C = 0;
 		}
 		
 		

@@ -15,6 +15,7 @@
 #include "UART/UART.h"
 #include "I2C/TWI_I2C.h"
 #include "DRV8825/DRV8825.h"
+#include "PWM0/PMW0.h"
 
 void float_to_char_s2(char value_adch);
 
@@ -28,8 +29,18 @@ uint8_t	 moisture_level;
 uint8_t bufferRX;
 float voltage;
 
-void agua(){
-	rotate_motor(1, 1*STEPS_PER_REVOLUTION);
+void encender_agua(){
+	duty_cycleA(255);
+}
+
+void apagar_agua(){
+	duty_cycleA(0);
+}
+
+void dispensar(){
+	duty_cycleA(255);
+	_delay_ms(1000);
+	duty_cycleA(0);
 }
 
 int main(void)
@@ -41,6 +52,9 @@ int main(void)
 	I2C_SETTING_SLAVE(SlaveHumedad);
 	sei();
 	setup_pins();
+	init_PMW0A(0, 0, 1024);
+	duty_cycleA(0);
+	
     while (1) 
     {
 		initADC(0);							// Inicializar ADC [0]
@@ -50,15 +64,21 @@ int main(void)
 		float_to_char_s2(moisture_level);
 		
 		if (moisture_level<30){
-			agua();
+			encender_agua();
+		}
+		if (moisture_level>80){
+			apagar_agua();
 		}
 		
 		if (buffer == 3)
 		{
-			agua();
+			if (moisture_level>=30){
+				dispensar();
+				buffer=0;
+			}
 			buffer=0;
 		}
-		else {}
+	
 			
 		
 		_delay_ms(20);

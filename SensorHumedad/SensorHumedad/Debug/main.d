@@ -20,7 +20,7 @@ main.d main.o: .././main.c \
  .././ADC/initADC.h .././UART/UART.h .././I2C/TWI_I2C.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stdbool.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\twi.h \
- .././DRV8825/DRV8825.h
+ .././DRV8825/DRV8825.h .././PWM0/PMW0.h
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h:
 
@@ -69,3 +69,5 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\twi.h:
 
 .././DRV8825/DRV8825.h:
+
+.././PWM0/PMW0.h:

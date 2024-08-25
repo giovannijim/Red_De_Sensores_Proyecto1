@@ -21,9 +21,9 @@ void setup_pins() {
 void step_motor(void) {
 	// Generar un pulso de paso
 	PORTC |= (1 << STEP_PIN);
-	_delay_us(1000);
+	_delay_us(velocidad);
 	PORTC &= ~(1 << STEP_PIN);
-	_delay_us(1000);
+	_delay_us(velocidad);
 }
 
 void rotate_motor(uint8_t direction, uint16_t steps) {

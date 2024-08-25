@@ -141,6 +141,12 @@
     <Compile Include="main.c">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="PWM0\PMW0.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="PWM0\PMW0.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="UART\UART.c">
       <SubType>compile</SubType>
     </Compile>
@@ -152,6 +158,7 @@
     <Folder Include="ADC" />
     <Folder Include="I2C" />
     <Folder Include="DRV8825" />
+    <Folder Include="PWM0" />
     <Folder Include="UART" />
   </ItemGroup>
   <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />
